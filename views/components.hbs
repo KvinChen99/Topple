@@ -1,0 +1,102 @@
+<!--  Image Post -->
+<style>
+.demo-card-wide.mdl-card {
+    width: 512px;
+}
+.demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 256px;
+    background: url("https://vignette.wikia.nocookie.net/spongebob/images/4/4d/Patrick_and_SpongeBob_Time_Machine.png/revision/latest?cb=20130526130250") center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+    color: #fff;
+}
+</style>
+
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+    </div>
+    <div class="mdl-card__supporting-text">
+        This is the text post
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            Like
+        </a>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            Dislike
+        </a>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+        onclick="postOpenCommentButton()">
+        Comment
+    </a>
+    <a id="toggleCommentVis" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+    onclick="postCommentVisButton()">
+    View Comments
+</a>
+</div>
+<div id="postCommentBox" class="mdl-card__actions mdl-card--border" style="display: none;">
+    Comments here
+</div>
+<div id="newCommentBox" class="mdl-card__actions mdl-card--border" style="display: none;">
+    <form action="#" class="mdl-card__actions mdl-card--border" id="commentForm">
+        <div class="mdl-textfield mdl-js-textfield">
+            <textarea class="mdl-textfield__input" type="text" rows= "5" id="sample5" ></textarea>
+            <label class="mdl-textfield__label" for="sample5">Comment...</label>
+        </div>
+        <div id="submitCommentButton" class="toppleFormButton">
+            <input class="mdl-button mdl-js-button mdl-button--colored" type="submit" value="Submit Comment">
+        </div>
+    </form>
+</div> <!-- End Image Post -->
+
+
+<!-- Text only Post -->
+<style>
+    .demo-card-wide.mdl-card {
+        width: 512px;
+    }
+    .demo-card-wide > .mdl-card__title {
+        color: #fff;
+        max-height: 128px;
+        background: url("https://vignette.wikia.nocookie.net/spongebob/images/4/4d/Patrick_and_SpongeBob_Time_Machine.png/revision/latest?cb=20130526130250") center / cover;
+    }
+    .demo-card-wide > .mdl-card__menu {
+        color: #fff;
+    }
+</style>
+
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+    <div style="font-size:20px;" class="mdl-card__supporting-text">
+        This is the text post
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            Like
+        </a>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            Dislike
+        </a>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+        onclick="postOpenCommentButton()">
+        Comment
+    </a>
+    <a id="toggleCommentVis" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+    onclick="postCommentVisButton()">
+    View Comments
+</a>
+</div>
+<div id="postCommentBox" class="mdl-card__actions mdl-card--border" style="display: none;">
+    Comments here
+</div>
+<div id="newCommentBox" class="mdl-card__actions mdl-card--border" style="display: none;">
+    <form action="#" class="mdl-card__actions mdl-card--border" id="commentForm">
+        <div class="mdl-textfield mdl-js-textfield">
+            <textarea class="mdl-textfield__input" type="text" rows= "5" id="sample5" ></textarea>
+            <label class="mdl-textfield__label" for="sample5">Comment...</label>
+        </div>
+        <div id="submitCommentButton" class="toppleFormButton">
+            <input class="mdl-button mdl-js-button mdl-button--colored" type="submit" value="Submit Comment">
+        </div>
+    </form>
+</div>

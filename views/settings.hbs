@@ -1,0 +1,79 @@
+<form id="SettingsForm" style="text-align:center;">
+    <div class="mdl-textfield mdl-js-textfield toppleTextForm">
+      <input class="mdl-textfield__input" type="text" id="displayname" name="displayname">
+      <label class="mdl-textfield__label" for="displayname">Name</label>
+    </div> <br>
+    <div class="mdl-textfield mdl-js-textfield toppleTextForm">
+      <input class="mdl-textfield__input" type="text" id="username" name="username">
+      <label class="mdl-textfield__label" for="username">Username</label>
+    </div> <br>
+    <div class="mdl-textfield mdl-js-textfield toppleTextForm">
+    <!--  Adjust number of rows for bio here  -->
+      <textarea class="mdl-textfield__input" type="text" rows= "3" id="biography" name="biography"></textarea>
+      <label class="mdl-textfield__label" for="biography">A short bio</label>
+    </div> <br>
+    <div class="mdl-textfield mdl-js-textfield toppleTextForm">
+      <input class="mdl-textfield__input" type="text" id="profileimage" name="profileimage">
+      <label class="mdl-textfield__label" for="profileimage">A link to your profile image</label>
+    </div><br>
+    <div class="mdl-textfield mdl-js-textfield toppleTextForm">
+      <input class="mdl-textfield__input" type="number" id="visibilitysetting" name="visibilitysetting">
+      <label class="mdl-textfield__label" for="visibilitysetting">Visibility Setting (1 - 5)</label>
+    </div>
+    <div class="toppleFormButton">
+    	<input class="mdl-button mdl-js-button" value="Submit Changes" onclick="serializeSignup('{{action_link_settings}}');">
+    </div>
+</form>
+
+<!--  Error messages  -->
+<div class="toppleError centerLeftOrientation" style="display: none;" id="SettingsFormError">
+    <p>Error Message</p>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $.get("{{user_profile_link}}" + "?token=" + sessionStorage.getItem("token"), function(data) {
+            var json_response = JSON.parse(data);
+            json_response = json_response["fromUser"];
+            if (json_response["username"]) {
+                $("#username")[0].value = json_response["username"];
+                $("#username")[0].labels[0].innerHTML = "";
+            }
+            if (json_response["displayName"]) {
+                $("#displayname")[0].value = json_response["displayName"];
+                $("#displayname")[0].labels[0].innerHTML = "";
+            }
+            if (json_response["biography"]) {
+                $("#biography")[0].value = json_response["biography"];
+                $("#biography")[0].labels[0].innerHTML = "";
+            }
+            if (json_response["imageURL"]) {
+                $("#profileimage")[0].value = json_response["imageURL"];
+                $("#profileimage")[0].labels[0].innerHTML = "";
+            }
+            if (json_response["feedVisibilitySettings"]) {
+                $("#visibilitysetting")[0].value = json_response["feedVisibilitySettings"];
+                $("#visibilitysetting")[0].labels[0].innerHTML = "";
+            }
+        });
+    });
+
+	function serializeSignup(action_link) {
+		let query_params = $("#SettingsForm").serialize();
+		$.ajax({
+		    url: action_link + "?" + query_params + "&token=" + sessionStorage.getItem("token"),
+		    type: 'GET',
+		    success: function(data) {
+				$("#SettingsFormError")[0].style.display = "none";
+				console.log("Successfully saved settings");
+				window.location.reload();
+		    },
+		    error: function(data) {
+		        $("#SettingsFormError")[0].style.display = "block";
+				$("#SettingsFormError")[0].innerHTML = data.responseText;
+				console.log("Failed to save settings");
+				console.log(data.responseText);
+		    }
+		});
+	}
+</script>

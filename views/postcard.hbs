@@ -1,0 +1,58 @@
+{{#each feed_posts}}
+<!--  Post -->
+<div id="PostID_{{postID}}" style="background-color: #edfdff; margin-bottom: 15px;" class="demo-card-wide mdl-card mdl-shadow--2dp centerPage">
+    <div class="mdl-card__supporting-text">
+        <span><a style="color: black;" href="/profile?profile_user={{author.username}}">{{author.displayName}}</a></span>
+        <span style="float: right;"> <span id="postLikeNumber">{{likes}}</span> Likes </span>
+    </div>
+    {{#if imageURL }}
+        <div class="mdl-card__title" style="background: url('{{imageURL}}') center / cover;"></div>
+    {{/if}}
+    <div class="mdl-card__supporting-text">
+        {{#if caption }}
+            {{caption}}
+        {{else}}
+            {{text}}
+        {{/if}}
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <a onclick="performLike({{postID}}, {{likes}});" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            Like
+        </a>
+        <a onclick="performDislike({{postID}}, {{likes}});" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            Dislike
+        </a>
+        <a onclick="togglePostCreateCommentBox({{postID}});" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="postOpenCommentButton('PostID_{{postID}}')">
+            Comment
+        </a>
+        <a onclick="togglePostCommentBox({{postID}});" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="postCommentVisButton('PostID_{{postID}}')">
+            View Comments
+        </a>
+    </div>
+    <div id="postCommentBox" class="mdl-card__actions mdl-card--border" style="display: none;">
+        {{#if comments}}
+            {{#each comments}}
+                <div id="comment">
+                    <span id="user"><a href="/profile?profile_user={{author.username}}">{{author.displayName}}</a></span>
+                    <span id="commentContent">{{message}}</span>
+                </div>
+            {{/each}}
+        {{else}}
+            <p>No comments.</p>
+        {{/if}}
+    </div>
+    <div class="mdl-card__actions mdl-card--border" id="postCreateCommentBox" style="display: none;">
+        <form class="mdl-card__actions mdl-card--border" id="CommentForm" style="margin-left: 15%;">
+            <div class="mdl-textfield mdl-js-textfield">
+                <textarea class="mdl-textfield__input" type="text" rows= "1" id="comment" name="commentText"></textarea>
+                <label class="mdl-textfield__label" for="comment">Comment</label>
+            </div>
+            <div class="toppleFormButton">
+                <input class="mdl-button mdl-js-button mdl-button--colored" onclick="submitPostComment({{postID}})" value="Submit Comment">
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Endpost Type-->
+<br>
+{{/each}}

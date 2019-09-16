@@ -1,0 +1,40 @@
+<!--  Login form  -->
+<form id="LoginForm" style="text-align:center;" >
+    <div class="mdl-textfield mdl-js-textfield toppleTextForm">
+        <input class="mdl-textfield__input" type="text" id="username" name="username">
+        <label class="mdl-textfield__label" for="username">Username</label>
+    </div> <br>
+    <div class="mdl-textfield mdl-js-textfield toppleTextForm">
+        <input class="mdl-textfield__input" type="password" id="password" name="password">
+        <label class="mdl-textfield__label" for="password">Password</label>
+    </div> <br>
+    <div class="toppleFormButton">
+        <input class="mdl-button mdl-js-button" value="Login" onclick="serializeLoginAndGetToken('{{action_link_login}}')">
+    </div>
+</form>
+
+<!--  Error messages  -->
+<div class="toppleError centerLeftOrientation" style="display: none;" id="LoginFormError">
+    <p>Error Message</p>
+</div>
+
+<script>
+	function serializeLoginAndGetToken(action_link) {
+		let query_params = $("#LoginForm").serialize();
+		$.ajax({
+		    url: action_link + "?" + query_params,
+		    type: 'GET',
+		    success: function(data) {
+				$("#LoginFormError")[0].style.display = "none";
+				console.log("Successfully logged in");
+                sessionStorage.setItem("token", data);
+                window.location.replace('/feed');
+		    },
+		    error: function(data) {
+		        $("#LoginFormError")[0].style.display = "block";
+				$("#LoginFormError")[0].innerHTML = data.responseText;
+				console.log("Failed to login");
+		    }
+		});
+	}
+</script>

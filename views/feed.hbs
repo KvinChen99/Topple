@@ -1,0 +1,77 @@
+<!-- Use ajax to fetch posts -->
+<div id="FeedPosts">
+    <div class="mdl-card__supporting-text">
+        Your feed is empty :(
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+		    url: "/getFeedPosts?token=" + sessionStorage.getItem("token"),
+		    type: 'GET',
+		    success: function(data) {
+                console.log("successfully fetched posts");
+                if (data) {
+                    $("#FeedPosts")[0].innerHTML = data;
+                }
+		    }
+		});
+    });
+
+    function performLike(postID, currentLikes) {
+        let query_params = "token=" + sessionStorage.getItem("token") + "&postID=" + postID + "&type=like";
+        $.ajax({
+		    url: "{{action_link_post_like}}?" + query_params,
+		    type: 'GET',
+		    success: function(data) {
+                console.log("successfully liked post " + postID);
+                $("#PostID_" + postID + " #postLikeNumber")[0].innerHTML = currentLikes + 1;
+		    }
+		});
+    }
+
+    function performDislike(postID, currentLikes) {
+        let query_params = "token=" + sessionStorage.getItem("token") + "&postID=" + postID + "&type=dislike";
+        $.ajax({
+		    url: "{{action_link_post_like}}?" + query_params,
+		    type: 'GET',
+		    success: function(data) {
+                console.log("successfully disliked post " + postID);
+                $("#PostID_" + postID + " #postLikeNumber")[0].innerHTML = currentLikes - 1;
+		    }
+		});
+    }
+
+    function togglePostCreateCommentBox(postID) {
+        var postCreateCommentBox = $("#PostID_" + postID + " #postCreateCommentBox")[0];
+        if (postCreateCommentBox.style.display == "none") {
+            postCreateCommentBox.style.display = "block";
+        } else {
+            postCreateCommentBox.style.display = "none";
+        }
+    }
+
+    function togglePostCommentBox(postID) {
+        var postCommentBox = $("#PostID_" + postID + " #postCommentBox")[0];
+        if (postCommentBox.style.display == "none") {
+            postCommentBox.style.display = "block";
+        } else {
+            postCommentBox.style.display = "none";
+        }
+    }
+
+    function submitPostComment(postID) {
+        let query_params = $("#PostID_" + postID + " #CommentForm").serialize();
+        query_params += "&postID=" + postID + "&token=" + sessionStorage.getItem("token");
+        $.ajax({
+		    url: "{{action_post_comment}}?" + query_params,
+		    type: 'GET',
+		    success: function(data) {
+                console.log("successfully commented on post " + postID);
+                window.location.reload();
+            }
+		});
+    }
+
+</script>

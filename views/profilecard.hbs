@@ -1,0 +1,39 @@
+<!--  User's profile info -->
+    <!-- Profile Image -->
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp centerPage">
+        {{#if user_profile.toUser.imageURL}}
+            <div class="mdl-card__title inline" style="background: url('{{user_profile.toUser.imageURL}}') center / cover; height: 256px;"></div>
+        {{else}}
+            <div class="mdl-card__title inline"><img src="images/profile.jpg" height="256" width="512"></img></div>
+        {{/if}}
+
+        <div class="mdl-card__supporting-text">
+            <div style="font-size: 20px;">
+                <br><b>{{ user_profile.toUser.displayName }}</b>
+            </div>
+            <div>
+                <br>{{ user_profile.toUser.biography }}
+            </div>
+            {{#if profile_user }}
+                <br>
+                <!-- Friendship Level indicator -->
+                <div class="inline">
+                    <div>Friendship Level: {{user_profile.level}}</div>
+                    <div>Friendship Score: {{user_profile.score}}</div>
+                </div> <!-- End friendship level indicator -->
+            {{/if}}
+            <!-- Chat button -->
+            <span id="chatButton" class="inline">
+                <br>
+                {{#if profile_user }}
+                    <a onclick="profilePush('{{profile_user}}');" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored profileButton">Push <i class="fa fa-arrow-up"></i></a>
+                    <a href="/chat?profile_user={{user_profile.toUser.username}}&token={{token}}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored profileButton">
+                        Message
+                    </a>
+                    <a onclick="profileShove('{{profile_user}}');" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored profileButton">Shove <i class="fa fa-arrow-down"></i></a>
+                {{/if}}
+            </span> <!-- End chat button -->
+        </div>
+    </div>  <!--  End Profile Image -->
+ <!--  End User's profile info -->
+<br/>

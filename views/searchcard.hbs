@@ -1,0 +1,23 @@
+{{#each users}}
+    <!--  User's profile info -->
+        <!-- Profile Image -->
+        <div style="background-color: #edfdff; margin-bottom: 25px;" class="demo-card-wide mdl-card mdl-shadow--2dp centerPage">
+            {{#if imageURL}}
+                <div class="mdl-card__title inline" style="background: url('{{imageURL}}') center / cover; height: 256px;"></div>
+            {{else}}
+                <div class="mdl-card__title inline"><img src="images/profile.jpg" height="256" width="512"></img></div>
+            {{/if}}
+            <div class="mdl-card__supporting-text">
+                <p><b>{{displayName}}<b></p>
+                {{#if biography}}
+                    <p>{{biography}}</p>
+                {{/if}}
+                <!-- Chat button -->
+                <div id="chatButton" style="text-align: center; width: 256px;">
+                    <a href="/profile?profile_user={{username}}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored profileButton"> Profile </a>
+                    <!--<a href="/chat?profile_user={{username}}&token={{token}}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored profileButton"> Chat </a>-->
+                </div> <!-- End chat button -->
+            </div>
+        </div>  <!--  End Profile Image -->
+
+{{/each}}

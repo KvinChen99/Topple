@@ -1,0 +1,48 @@
+<script>
+    var socket;
+    function connectToServer(){
+        socket = new WebSocket("{{action_link_chat}}");
+        socket.onopen = function(event) {
+            // current username
+            socket.send("{{user_profile.toUser.username}}");
+            // person you want to chat with username
+            socket.send("{{profile_user}}");
+            document.getElementById("mychat").innerHTML += "Connected!<br />";
+        }
+        socket.onmessage = function(event) {
+            document.getElementById("mychat").innerHTML += event.data + "<br />";
+        }
+        socket.onclose = function(event) {
+            document.getElementById("mychat").innerHTML += "Disconnected!<br />";
+        }
+        socket.onerror = function(event) {
+            console.log("error");
+        }
+    }
+    function sendMessage(){
+        socket.send(document.chatform.message.value);
+        // clear the box
+        document.chatform.message.value = "";
+        return false;
+    }
+</script>
+
+<!-- the message output -->
+<div id="mychat" style="margin: 10px;"></div><br>
+
+<!--  the textbox and submit button -->
+<form id="chatForm" name="chatform" onsubmit="return sendMessage();">
+    <div id="chatInput" class="mdl-textfield mdl-js-textfield">
+        <textarea id="chatTextArea" class="mdl-textfield__input" type="text" rows= "3" id="messageInput" name="message" placeholder="Type Here"></textarea>
+    </div>
+    <div>
+        <input onclick="sendMessage();" name="submit" value="Send Message" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored center"/>
+    </div>
+</form>
+<br />
+
+<script>
+    $(document).ready(function() {
+        connectToServer();
+    });
+</script>

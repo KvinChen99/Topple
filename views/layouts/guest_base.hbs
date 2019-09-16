@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>{{title}} - Topple</title>
+    <!--  Material Design CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!--  Our CSS style sheet -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/topple.css" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="stylesheets/imagur-style.css" rel="stylesheet" media="screen">
+    <link href="stylesheets/imagur-mobile.css" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="js/imagur.js"></script>
+</head>
+<body style="text-align: center;">
+    <!-- Top Bar -->
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <a href="/">
+                <span class="mdl-layout-title"><img id="logo" src="images/logo.png" style="height: 50px;"></span>
+            </a>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <a style="font-size: 16px;" class="mdl-navigation__link" href="/login">Login</a>
+            </nav>
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <a style="font-size: 16px;" class="mdl-navigation__link" href="/signup">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="mdl-layout__content">
+        <div class="page-content">
+            <!-- Your content goes here -->
+            {{{ body }}}
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!--  Input form  -->
+<form id="SignUpForm" style="text-align:center;">
+  <div class="mdl-textfield mdl-js-textfield toppleTextForm">
+    <input class="mdl-textfield__input" type="text" id="displayname" name="displayname">
+    <label class="mdl-textfield__label" for="displayname">Name</label>
+  </div> <br>
+  <div class="mdl-textfield mdl-js-textfield toppleTextForm">
+    <input class="mdl-textfield__input" type="text" id="username" name="username">
+    <label class="mdl-textfield__label" for="username">Username</label>
+  </div> <br>
+  <div class="mdl-textfield mdl-js-textfield toppleTextForm">
+    <input class="mdl-textfield__input" type="password" id="password" name="password">
+    <label class="mdl-textfield__label" for="password">Password</label>
+  </div> <br>
+   <div class="mdl-textfield mdl-js-textfield toppleTextForm">
+    <input class="mdl-textfield__input" type="password" id="confirmpassword" name="confirmpassword">
+    <label class="mdl-textfield__label" for="confirmpassword">Confirm your password</label>
+  </div> <br>
+  <div class="mdl-textfield mdl-js-textfield toppleTextForm">
+  <!--  Adjust number of rows for bio here  -->
+    <textarea class="mdl-textfield__input" type="text" rows= "3" id="biography" name="biography"></textarea>
+    <label class="mdl-textfield__label" for="biography">A short bio</label>
+  </div> <br>
+  <div class="mdl-textfield mdl-js-textfield toppleTextForm">
+    <input class="mdl-textfield__input" type="text" id="profileimage" name="profileimage">
+    <label class="mdl-textfield__label" for="profileimage">A link to your profile image (optional)</label>
+  </div>
+  <!-- Imagur API -->
+  <div class="IMAGUR-DROPZONE">
+    <div class="IMAGUR-INFO"></div>
+  </div>
+  <div class="toppleFormButton">
+  	<input class="mdl-button mdl-js-button" value="Sign up" onclick="serializeSignup('{{action_link_signup}}');">
+  </div>
+</form>
+
+<!--  Error messages  -->
+<div class="toppleError centerLeftOrientation" style="display: none;" id="SignUpFormError">
+	<p>Error Message</p>
+</div>
+
+<script>
+	function serializeSignup(action_link) {
+		let query_params = $("#SignUpForm").serialize();
+		$.ajax({
+		    url: action_link + "?" + query_params,
+		    type: 'GET',
+		    success: function(data) {
+				$("#SignUpFormError")[0].style.display = "none";
+				console.log("Successfully signed up");
+				window.location.replace("/login");
+		    },
+		    error: function(data) {
+		        $("#SignUpFormError")[0].style.display = "block";
+				$("#SignUpFormError")[0].innerHTML = data.responseText;
+				console.log("Failed to sign up");
+				console.log(data.responseText);
+		    }
+		});
+	}
+
+    var feedback = function(res) {
+        if (res.success === true) {
+            var get_link = res.data.link.replace(/^http:\/\//i, 'https://');
+            $(".IMAGUR-DROPZONE")[0].style.display = "none";
+            $("#profileimage")[0].value = get_link;
+            $("#profileimage")[0].labels[0].innerHTML = "";
+        }
+    };
+
+
+    $(document).ready(function() {
+        new Imgur({
+            clientid: '5cdfd7f2acaea8d', //You can change this ClientID
+            callback: feedback
+        });
+    });
+</script>

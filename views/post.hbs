@@ -1,0 +1,64 @@
+<!--  Post form  -->
+<form id="PostForm" class="center" style="text-align: center;">
+    <div class="mdl-textfield mdl-js-textfield toppleTextForm">
+        <input class="mdl-textfield__input" type="text" id="postText" name="postText">
+        <label class="mdl-textfield__label" for="postText">Post text</label>
+    </div> <br>
+    <div class="mdl-textfield mdl-js-textfield toppleTextForm">
+        <input class="mdl-textfield__input" type="number" id="postPrivacy" name="postPrivacy">
+        <label class="mdl-textfield__label" for="postPrivacy">Post privacy level (1-5)</label>
+    </div> <br>
+    <div class="mdl-textfield mdl-js-textfield toppleTextForm">
+        <input class="mdl-textfield__input" type="text" id="postImage" name="postImage" id="postImage">
+        <label class="mdl-textfield__label" for="postImage">A link to your post image (optional)</label>
+    </div> <br>
+    <!-- Imagur API -->
+    <div class="IMAGUR-DROPZONE">
+      <div class="IMAGUR-INFO"></div>
+    </div>
+    <div class="toppleFormButton">
+        <input class="mdl-button mdl-js-button" value="Publish post" onclick="serializePostFeed('{{action_link_post}}');">
+    </div>
+</form>
+
+<!--  Error messages  -->
+<div class="toppleError centerLeftOrientation" style="display: none;" id="PostFormError">
+    <p>Error Message</p>
+</div>
+
+<script>
+    function serializePostFeed(action_link) {
+        let query_params = $("#PostForm").serialize();
+        $.ajax({
+            url: action_link + "?token=" + sessionStorage.getItem("token") + "&" + query_params,
+            type: 'GET',
+            success: function(data) {
+                $("#PostFormError")[0].style.display = "none";
+                console.log("Successfully posted");
+                window.location.replace("/profile");
+            },
+            error: function(data) {
+                $("#PostFormError")[0].style.display = "block";
+                $("#PostFormError")[0].innerHTML = data.responseText;
+                console.log("Failed to post");
+            }
+        });
+    }
+
+    var feedback = function(res) {
+        if (res.success === true) {
+            var get_link = res.data.link.replace(/^http:\/\//i, 'https://');
+            $(".IMAGUR-DROPZONE")[0].style.display = "none";
+            $("#postImage")[0].value = get_link;
+            $("#postImage")[0].labels[0].innerHTML = "";
+        }
+    };
+
+
+    $(document).ready(function() {
+        new Imgur({
+            clientid: '5cdfd7f2acaea8d', //You can change this ClientID
+            callback: feedback
+        });
+    });
+</script>

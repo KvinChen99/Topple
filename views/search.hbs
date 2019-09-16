@@ -1,0 +1,22 @@
+<!-- Use ajax to fetch posts -->
+<div id="SearchUsers">
+</div>
+
+<script>
+    $(document).ready(function() {
+        let searchParams = new URLSearchParams(window.location.search);
+        var query_params = "";
+        if (searchParams.has('q')) {
+            query_params += "?q=" + searchParams.get('q');
+        }
+        $.ajax({
+		    url: "/getSearchUsers" + query_params,
+		    type: 'GET',
+		    success: function(data) {
+                console.log(data);
+                console.log("successfully searched users");
+                $("#SearchUsers")[0].innerHTML = data;
+		    }
+		});
+    });
+</script>

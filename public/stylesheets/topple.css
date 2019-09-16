@@ -1,0 +1,262 @@
+@charset "ISO-8859-1";
+
+body{
+	font-family: Arial;
+	font-size: 12pt;
+}
+
+.header{
+/*	font-family: Arial;
+	line-height: 88px;
+	font-size: 40px;
+	color: #8d8bf4;	*/
+}
+
+form {
+
+}
+
+
+.feed{
+	position: absolute;
+	background-color: white;
+	border-radius: 12px;
+	top: 126px;
+	padding-left: 30px;
+	left: 20px;
+	color: #000000;
+	width: 900px;
+	height: 1000px;
+	overflow: scroll;
+}
+
+h1.feed{
+	font-size: 24pt;
+}
+
+.chat{
+	position: absolute;
+	left: 900px;
+	top: 126px;
+	right: 30px;
+	background-color: #e52600;
+	color: #ffffff;
+	font-size: 18pt;
+	height: 1000px;
+	text-align: right;
+	line-height: 30px;
+}
+
+.header a:link{
+	margin-left: 250px;
+	font-family: Arial;
+	line-height: 88px;
+	font-size: 40px;
+	/* This line was making a lot of my text red */
+	/*color: #8d8bf4; */
+	text-decoration: none;
+}
+
+.header a:visited{
+	font-family: Arial;
+	line-height: 88px;
+	font-size: 40px;
+	color: #8d8bf4;
+	text-decoration: none;
+}
+
+div.toppleTextForm {
+	/* margin-left: 25%; */
+}
+
+div.toppleFormButton {
+	/* margin-left: 32%;	*/
+}
+
+.toppleError {
+	margin-top: 25px;
+	color: red;
+}
+
+.centerLeftOrientation {
+	margin-left: 25%;
+}
+
+#ToppleSettingsSubmitButton {
+	margin-left: 25%;
+}
+
+.inline {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+.baseSpan {
+	margin-left: 5%;
+}
+
+#baseProfileButton {
+	color: black;
+}
+
+.sidebarElement {
+	padding: 3px;
+}
+
+#header {
+	border-style: solid;
+	border-color: red;
+}
+
+#imagePost {
+	max-width: 250px;
+}
+
+#sidebar {
+	float: right;
+	border-style: solid;
+	border-color: red;
+}
+
+#sidebarImage {
+	width: 60px;
+	border-radius: 100%;
+}
+
+#post {
+	border-style: solid;
+	border-color: red;
+	margin-left: 33%;
+	margin-right: 33%;
+}
+
+#searchbar {
+	background-color: white;
+}
+
+
+#postCommentBox {
+	display: none;
+}
+
+#submitCommentButton {
+	margin-left: 15%;
+}
+
+#logo {
+	width:200px;
+}
+
+#drawerLogo {
+	width:150px;
+}
+
+.mdl-button {
+	font-family: Arial;
+	font-size: 12pt;
+	text-transform: none;
+}
+
+#CommentForm {
+	margin-left: 15%;
+}
+
+div.page-content {
+	/* margin: auto;
+	width: 50%; */
+}
+
+div.demo-card-wide {
+	border-bottom: 25px;
+}
+
+#sidebarImg {
+	width: 25px;
+}
+
+div.demo-card-image {
+	margin:left;
+
+}
+
+#profilePageImg {
+	float: left;
+}
+
+#profileInfo {
+	float: left;
+}
+
+#chatButton {
+	margin-left: 25%;
+}
+
+#profilePage {
+	margin:auto;
+	width:50%;
+}
+
+.profileButton {
+}
+
+#chatForm {
+	margin: auto;
+	width: 50%;
+}
+
+#chatInput {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#chatSubmit {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div {
+	/* border-style: solid;
+	border-color: red; */
+}
+
+#mychat {
+	margin-left: 33%;
+	margin-right: 33%;
+	border-style: solid;
+	border-color: blue;
+	border-width: 1px;
+}
+
+#chatTextArea {
+	border-style: solid;
+	border-color: blue;
+	border-width: 1px;
+}
+
+.center{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.demo-card-wide.mdl-card {
+    width: 512px;
+}
+.demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 256px;
+    background: url("https://vignette.wikia.nocookie.net/spongebob/images/4/4d/Patrick_and_SpongeBob_Time_Machine.png/revision/latest?cb=20130526130250") center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+    color: #fff;
+}
+
+.centerPage {
+	max-width: 960px;
+	margin: auto;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>{{title}} - Topple</title>
+    <!--  Material Design CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!--  Our CSS style sheet -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/topple.css" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <!-- <script src="Scripts0.js"></script> -->
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title"><img id="logo" src="images/logo.png"></span>
+            <!-- Add spacer, to align navigation to the right -->
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <a style="font-size: 16px;" class="mdl-navigation__link" href="">{{ profile_name }}</a>
+            </nav>
+
+            <span class="inline">
+                <form class="inline" method="GET" action="{{ action_link_search }}">
+                    <span class="mdl-textfield mdl-js-textfield toppleTextForm">
+                        <input class="mdl-textfield__input" type="text" id="searchbox" name="q">
+                        <label style="color:white;" class="mdl-textfield__label" for="searchbox">Search</label>
+                    </span>
+                    <span>
+                        <input style="color:white;" class="mdl-button mdl-js-button inline" type="submit" value="Search">
+                    </span>
+                </form>
+            </span>
+            <span class="inline">
+                <a style="font-size: 16px;" class="mdl-navigation__link" href="{{action_link_post}}">Post</a>
+            </span>
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <span id="settingsButton">
+                    <a style="font-size: 16px;" class="mdl-navigation__link" href="{{action_link_settings}}">Settings</a>
+                </span>
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- Friend List Bar -->
+    <!-- The drawer is always open in large screens. The header is always shown,
+    even in small screens. -->
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Friends</span>
+        <div class="mdl-navigation">
+            <a class="mdl-navigation__link" href="#">Friend1</a>
+            <a class="mdl-navigation__link" href="">Friend2</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="mdl-layout__content">
+        <div class="page-content">
+            <!-- Your content goes here -->
+        </div>
+    </main>
+</body>
+</html>
